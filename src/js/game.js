@@ -2,42 +2,53 @@
   'use strict';
 
   function Game() {
-    this.player = null;
+
   }
 
   Game.prototype = {
 
     create: function () {
-      var x = this.game.width / 2
-        , y = this.game.height / 2;
 
-      this.player = this.add.sprite(x, y, 'player');
-      this.player.anchor.setTo(0.5, 0.5);
-      this.input.onDown.add(this.onInputDown, this);
+      // Set backgroundColor
+      this.game.stage.backgroundColor = '#71c5cf';
+
+      // Add Physics to game
+      this.physics.startSystem(Phaser.Physics.ARCADE);      
+      
+      // This is Albin
+      this.albin = this.add.sprite(100, 125, 'albin');
+
+      // Add Physics to Albin
+      this.physics.enable( [ this.albin ], Phaser.Physics.ARCADE);
+
+      // Albin is falling
+      this.albin.body.gravity.y = 1000;
+            
     },
 
     update: function () {
-      var x, y, cx, cy, dx, dy, angle, scale;
 
-      x = this.input.position.x;
-      y = this.input.position.y;
-      cx = this.world.centerX;
-      cy = this.world.centerY;
+      // If albin has fallen call the restart function
+      if (this.albin.inWorld == false)
+         this.restartGame();
 
-      angle = Math.atan2(y - cy, x - cx) * (180 / Math.PI);
-      this.player.angle = angle;
+      // Make Albin flap
+      if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+        jump();
+      }
 
-      dx = x - cx;
-      dy = y - cy;
-      scale = Math.sqrt(dx * dx + dy * dy) / 100;
-
-      this.player.scale.x = scale * 0.6;
-      this.player.scale.y = scale * 0.6;
     },
 
-    onInputDown: function () {
+    // Flap
+    jump: function () {
+      this.albin.body.gravity.y = -350;
+    },
+
+    // Restart game
+    restartGame: function () {
       this.game.state.start('menu');
     }
+
 
   };
 
