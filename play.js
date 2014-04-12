@@ -1,21 +1,5 @@
-var game = new Phaser.Game(600, 490, Phaser.AUTO, 'game_div');
-
-var flap = {
-    
-  preload: function () { 
-    // Add some backgroundcolor to the game
-    this.game.stage.backgroundColor = '#71c5cf';
-
-    // Load the albin sprite
-    this.game.load.image('albin', 'assets/bird.png');    
-
-    // Load the pipe sprite
-    this.game.load.image('pipe', 'assets/pipe.png');
-
-    // Load flap sound
-    // this.game.load.audio('flap', 'assets/jump.wav');
-  },
-  
+var play = {
+      
   create: function () { 
     // Display albin on the scene
     this.albin = this.game.add.sprite(100, 245, 'albin');
@@ -39,7 +23,7 @@ var flap = {
     this.timer = this.game.time.events.loop(1500, this.addRowOfPipes, this);           
 
     // Score label
-    this.score = -1;
+    score = -1;
     var style = { font: "30px Arial", fill: "#ffffff" };
     this.label_score = this.game.add.text(20, 20, "0", style);  
   },
@@ -77,7 +61,7 @@ var flap = {
     this.game.time.events.remove(this.timer);
 
     // Restarts the game
-    this.game.state.start('main');
+    this.game.state.start('menu');
   },
 
   hitPipe: function () {
@@ -112,20 +96,16 @@ var flap = {
   },
 
   addRowOfPipes: function () {        
-  // Add a row of 6 pipes with a hole somewhere in the middle
-  // Set a timer to add every 1,5 sec
+    // Add a row of 6 pipes with a hole somewhere in the middle
+    // Set a timer to add every 1,5 sec
     var hole = Math.floor(Math.random()*5)+1;
     
     // Score label
     for (var i = 0; i < 8; i++)
       if (i != hole && i != hole +1) 
-        this.addOnePipe(600, i*60+10);   
+        this.addOnePipe(600, i*60+10);
 
-    this.score += 1;
-    this.label_score.content = this.score;  
-  },
+    score += 1;
+    this.label_score.content = score;  
+  }
 };
-
-// Add and start the 'main' state to start the game
-game.state.add('main', flap);  
-game.state.start('main'); 
