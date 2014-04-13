@@ -1,9 +1,6 @@
 {
   "name": "flappy-albin",
   "description": "Flappy bird inspired game",
-  "readme": "",
-  "repository": "",
-  "version": "0.0.1",
-  "readme": "",
-  "dependencies": {}
+  "author": "Anders Kristoffersson",  
+  "version": "0.1.0"
 }

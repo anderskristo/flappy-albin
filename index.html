@@ -5,21 +5,45 @@
   <title>Flappy Albin</title>
 
   <style>
-    #game_div, p {
+    #game_div,
+    .social {
       width: 600px;
       margin: auto;
       margin-top: 20px;
     }
+    .github {
+      float: left;
+    }
+    .facebook {
+      float: left;
+      margin-top: 8px;
+      margin-right: 20px;
+    }
   </style>
-
-  <script type="text/javascript" src="phaser.min.js"></script>
-  <script type="text/javascript" src="boot.js"></script>
-  <script type="text/javascript" src="menu.js"></script>
-  <script type="text/javascript" src="play.js"></script>
-  <script type="text/javascript" src="game.js"></script>
 </head>
 
-<body>  
-  <div id="game_div"> </div>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1457881981114554";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  <div id="game_div"></div>
+  <div class="social">
+    <div class="facebook">
+      <div class="fb-share-button" data-href="https://anderskristo.me/flappy-albin" data-width="100" data-type="button_count"></div>
+    </div>
+    <div class="github">
+      <iframe src="http://ghbtns.com/github-btn.html?user=anderskristo&repo=flappy-albin&type=fork&count=true&size=large" height="30" width="170" frameborder="0" scrolling="0" style="width:170px; height: 30px;" allowTransparency="true"></iframe>
+    </div>  
+  </div>
+
+
+  <script type="text/javascript" src="scripts/bundle.js"></script>  
+
 </body>
 </html>
